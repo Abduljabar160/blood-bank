@@ -14,6 +14,7 @@ const newColorTheme = {
     700: "#b3bef6",
   },
 };
+// Test comment
 const config = {
   config: {
     initialColorMode: "dark",
