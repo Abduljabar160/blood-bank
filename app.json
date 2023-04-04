@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "BloodBank",
+    "slug": "BloodBank",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
