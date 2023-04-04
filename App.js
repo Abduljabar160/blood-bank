@@ -16,7 +16,6 @@ const newColorTheme = {
 };
 const config = {
   config: {
-    // Changing initialColorMode to 'dark'
     initialColorMode: "dark",
   }
 }
