@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { extendTheme, NativeBaseProvider } from "native-base";
 import React from 'react';
+import { extendTheme, NativeBaseProvider } from "native-base";
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
+import { NativeRouter, Route, Routes } from "react-router-native";
 import Register from './Register';
 import Login from './Login';
 import StartingPage from './StartingPage';
 import HomePage from './HomePage';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator();
 
 const newColorTheme = {
   brand: {
@@ -24,13 +30,20 @@ const theme = extendTheme({ colors: newColorTheme, config });
 
 export default function App() {
   return (
-
-    <NativeBaseProvider theme={theme}> 
+    <NativeBaseProvider theme={theme}>
       <View style={styles.container}>
-        {/* <Register/>
-        <Login />
-        <StartingPage /> */}
-        <HomePage />
+        {/* <Register /> */}
+          {/* <Login /> */}
+          {/* <StartingPage /> */}
+          {/* <HomePage /> */}
+          <NativeRouter>
+            <Routes>
+              <Route exact path="/" element={<StartingPage />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<HomePage />} />
+            </Routes>
+          </NativeRouter>
       </View>
     </NativeBaseProvider>
   );

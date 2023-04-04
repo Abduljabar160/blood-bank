@@ -16,7 +16,7 @@ import {
 
 export default function HomePage() {
   const [service, setService] = useState("");
-  return <Box w="100%" bg="primary.50" style={{flex: 1, justifyContent: 'center'}}>
+  return <Box w="100%" bg="error.600" style={{flex: 1, justifyContent: 'center'}}>
     <Center marginTop={5} mb={10}>
     <Image size={150} borderRadius={100} source={bloodImg} alt="Alternate Text" />
     <Text mt={5} fontSize={20 }  fontWeight={"bold"}>EVERY BLOOD DONOR IS A HERO</Text>
