@@ -6,7 +6,7 @@ import bloodImg from "./assets/img/Blood.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
-  return <Box w="100%" bg="error.600" style={{flex: 1, justifyContent: 'center'}}>
+  return <Box w="100%" bg="aliceblue" style={{flex: 1, justifyContent: 'center'}}>
     <Center marginTop={10}>
     <Image size={150} borderRadius={100} source={bloodImg} alt="Alternate Text" />
     <Text mt={5} color={"primary.50"} fontWeight={"bold"}>BLOODHERO</Text>
