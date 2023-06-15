@@ -8,8 +8,12 @@ import Login from './Login';
 import StartingPage from './StartingPage';
 import HomePage from './HomePage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { AuthProvider } from './auth/AuthContext';
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient({ queryCache: false });
 
 const newColorTheme = {
   brand: {
@@ -30,10 +34,8 @@ export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
       <View style={styles.container}>
-        {/* <Register /> */}
-          {/* <Login /> */}
-          {/* <StartingPage /> */}
-          {/* <HomePage /> */}
+      <QueryClientProvider client={queryClient}>
+      <AuthProvider>
           <NativeRouter>
              <Routes>
                <Route exact path="/" element={<StartingPage />} />
@@ -42,6 +44,8 @@ export default function App() {
                <Route path="/dashboard" element={<HomePage />} />
              </Routes>
            </NativeRouter>
+        </AuthProvider>
+        </QueryClientProvider>
       </View>
     </NativeBaseProvider>
   );

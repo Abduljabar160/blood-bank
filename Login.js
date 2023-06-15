@@ -1,11 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-native";
 import { NativeBaseProvider, Box, FormControl, Stack, Input, WarningOutlineIcon, Button, Center, Select, CheckIcon, Text, Image, Link } from "native-base";
-
+import { useMutation } from 'react-query';
+import { AuthContext } from './auth/AuthContext';
+import axios from './services/base';
+import { login } from './services/auth';
 import bloodImg from "./assets/img/Blood.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const { setToken } = useContext(AuthContext);
+  const [username, setUsername] = useState('user1');
+  const [password, setPassword] = useState('password123');
+
+  const mutation = useMutation(login, {
+    onSuccess: (data) => {
+      setToken(data.token);
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+    },
+    onError: () => {
+      Alert.alert('Error', 'Login failed');
+    },
+  });
+
+  const handleLogin = () => {
+    mutation.mutate({ username, password });
+  };
+  
   return <Box w="100%" bg="aliceblue" style={{flex: 1, justifyContent: 'center'}}>
     <Center marginTop={10}>
     <Image size={150} borderRadius={100} source={bloodImg} alt="Alternate Text" />
@@ -62,8 +85,12 @@ export default function Login() {
           Atleast 6 characters are required.
         </FormControl.ErrorMessage>
         <Box alignItems="center" m="5">
-            <Button mb={3} px={10} size="md" colorScheme="secondary" onPress={() => navigate("/dashboard")}> Login </Button>
+            <Button mb={3} px={10} size="md" colorScheme="secondary" onPress={() => handleLogin()}> Login </Button>
+            <Box display={'flex'} flexDirection={'row'}>
+              <Text>Already have account? </Text><Link onPress={() => navigate("/register")}>Register here</Link>
+            </Box>
         </Box>
+        
       </Stack>
     </FormControl>
   </Box>;

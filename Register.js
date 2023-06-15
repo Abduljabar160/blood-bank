@@ -35,7 +35,7 @@ export default function Register({ navigation }) {
   const fetchPosts = async () => {
     // const { data } = await axios.post('http://localhost:9000/api/posts/');
     // console.log(data);
-    await axios.post('http://192.168.1.13:9000/api/auth/register', {
+    await axios.post('192.168.199.164/api/auth/register', {
       first_name: firstName,
       last_name: lastName,
       contact_number: contactnumber,
